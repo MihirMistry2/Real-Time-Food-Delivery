@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/head.ejs') %>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+        <section id="cart">
+            <div class="container">
+                <div class="row py-4"></div>
+                <div class="row pt-4 mx-1">
+                    <h5 class="pt-2">Order Summary</h5>
+                </div>
+                <% if (session.cart) { %>
+                <div class="row">
+                    <div class="card col-12">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Image</th>
+                                        <th class="text-center" scope="col">
+                                            Title
+                                        </th>
+                                        <th class="text-center" scope="col">
+                                            Qty
+                                        </th>
+                                        <th class="text-right" scope="col">
+                                            Price
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (let product of
+                                    Object.values(session.cart.items)) { %>
+                                    <tr>
+                                        <th scope="row">
+                                            <img
+                                                class="cartImg img-fluid img-thumbnail"
+                                                src="/img/<%= product.item.image %>"
+                                                alt=""
+                                            />
+                                        </th>
+                                        <td class="text-center">
+                                            <%= product.item.name %>
+                                        </td>
+                                        <td class="text-center">
+                                            <%= product.qty %>
+                                        </td>
+                                        <td class="text-right">
+                                            ₹<%= product.item.price %>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                            <div class="text-right">
+                                <div>
+                                    <p>
+                                        Total Price :
+                                        ₹<%=session.cart.totalPrice %>
+                                    </p>
+                                </div>
+                                <div class="col-md-4 float-right">
+                                    <form action="/orders" method="post">
+                                        <% if (user) { %>
+                                        <div class="form-group text-left">
+                                            <label for="mobile">Mobile</label>
+                                            <input
+                                                class="form-control"
+                                                type="text"
+                                                name="mobile"
+                                                id="mobile"
+                                                value="<%= user ? user.mobile : '' %>"
+                                                placeholder="Enter Mobile"
+                                            />
+                                        </div>
+                                        <div class="form-group text-left">
+                                            <label for="address">Address</label>
+                                            <input
+                                                class="form-control"
+                                                type="text"
+                                                name="address"
+                                                id="address"
+                                                value="<%= user ? user.address : '' %>"
+                                                placeholder="Enter Address"
+                                            />
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            class="btn btn-outline-primary btn-sm"
+                                        >
+                                            Order Now
+                                        </button>
+                                        <% } else { %>
+                                        <a
+                                            class="btn btn-outline-primary btn-sm"
+                                            href="/login"
+                                        >
+                                            Login to continue
+                                        </a>
+                                        <% } %>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } else { %>
+                <h2 class="text-center">No Cart Available</h2>
+                <% } %>
+            </div>
+        </section>
+
+        <%- include('../includes/endBody.ejs') %>
+    </body>
+</html>

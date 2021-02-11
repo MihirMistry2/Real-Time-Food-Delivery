@@ -1,0 +1,75 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top py-2">
+        <a class="navbar-brand" href="#">Food</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a
+                        class="nav-link <%= routePath === '/' ? 'active' : '' %>"
+                        href="/"
+                    >
+                        Home
+                    </a>
+                </li>
+                <% if (user) { %>
+                <li class="nav-item">
+                    <a
+                        class="nav-link <%= routePath === '/orders' ? 'active' : '' %>"
+                        href="/orders"
+                    >
+                        Orders
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <form action="/logout" method="POST">
+                        <button class="btn bg-white nav-link" type="submit">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+                <% } else { %>
+                <li class="nav-item">
+                    <a
+                        class="nav-link <%= routePath === '/registration' ? 'active' : '' %>"
+                        href="/registration"
+                    >
+                        Registration
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link <%= routePath === '/login' ? 'active' : '' %>"
+                        href="/login"
+                    >
+                        Login
+                    </a>
+                </li>
+                <% } %>
+                <li class="nav-item">
+                    <a
+                        class="nav-link <%= routePath === '/cart' ? 'active' : '' %>"
+                        href="/cart"
+                    >
+                        <p class="mb-0">
+                            Cart
+                            <span id="cartCouner" class="badge badge-success">
+                                <%= session.cart ? session.cart.totalQty : 0 %>
+                            </span>
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

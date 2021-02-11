@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/head.ejs') %>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+        <section id="login">
+            <div class="container">
+                <div class="row py-4"></div>
+                <div class="row pt-4 mx-1">
+                    <h5 class="pt-2">Login</h5>
+                </div>
+                <div class="row">
+                    <div class="card col-md-6 col-sm-10 col-11 mx-auto">
+                        <div class="card-body">
+                            <% if (messages.error) { %>
+                            <div
+                                class="alert alert-danger alert-dismissible fade show"
+                                role="alert"
+                            >
+                                <%= messages.error %>
+                                <button
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="alert"
+                                    aria-label="Close"
+                                >
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <% } %>
+                            <form action="/login" method="POST">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input
+                                        class="form-control"
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="Enter Email"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input
+                                        class="form-control"
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Enter Password"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-success">
+                                        Login
+                                    </button>
+
+                                    <a class="float-right" href="/registration">
+                                        Dont Have Account?
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <%- include('../includes/endBody.ejs') %>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/head.ejs') %>
+    <body>
+        <%- include('../includes/navigationAdmin.ejs') %>
+
+        <section id="admin-order">
+            <div class="container">
+                <div class="row py-4"></div>
+                <div class="row pt-4 mx-1">
+                    <h5 class="pt-2">Order Summary</h5>
+                </div>
+                <div class="row">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Orders</th>
+                                <th>User</th>
+                                <th>Mobile</th>
+                                <th>Address</th>
+                                <th>Status</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orderTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <%- include('../includes/endBody.ejs') %>
+    </body>
+</html>

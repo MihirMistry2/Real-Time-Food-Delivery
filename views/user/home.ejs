@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/head.ejs') %>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+        <section id="home">
+            <div class="container">
+                <div class="row py-4"></div>
+                <div class="row pt-4 mx-1">
+                    <h5 class="pt-2">All Products</h5>
+                </div>
+                <div class="row">
+                    <% for (let product of prods) { %>
+                    <div class="col-md-3 col-sm-4 col-6">
+                        <div class="card my-2">
+                            <img
+                                class="card-img-top px-3"
+                                src="../img/<%= product.image%>"
+                                alt="Card image cap"
+                            />
+                            <div class="card-body py-1">
+                                <h5 class="card-title text-center">
+                                    <%= product.name %>
+                                </h5>
+                                <p class="my-3">
+                                    ₹<%= product.price %>
+                                    <button
+                                        data-food="<%= JSON.stringify(product) %>"
+                                        class="add-to-cart btn btn-outline-primary btn-sm float-right"
+                                    >
+                                        + Add
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+
+        <%- include('../includes/endBody.ejs') %>
+    </body>
+</html>

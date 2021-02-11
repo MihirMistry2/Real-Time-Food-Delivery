@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/head.ejs') %>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+        <section id="order">
+            <div class="container">
+                <div class="row py-4"></div>
+                <div class="row pt-4 mx-1">
+                    <h5 class="pt-2">All Orders</h5>
+                </div>
+                <div class="row">
+                    <div class="card col-12">
+                        <% if (messages.success) { %>
+                        <div
+                            class="alert alert-success alert-dismissible fade show"
+                            role="alert"
+                        >
+                            <%= messages.success %>
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="alert"
+                                aria-label="Close"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <% } %>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Orders</th>
+                                        <th>Mobile</th>
+                                        <th>Address</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if (!orders.length) { %>
+                                    <tr>
+                                        <td class="text-center" colspan="3">
+                                            No Orders
+                                        </td>
+                                    </tr>
+                                    <% } else { %>
+                                    <!--  -->
+                                    <% for (let order of orders) { %>
+                                    <tr>
+                                        <td>
+                                            <a href="/orders/<%= order._id %>">
+                                                <%= order._id %>
+                                            </a>
+                                        </td>
+                                        <td><%= order.mobile %></td>
+                                        <td><%= order.address %></td>
+                                        <% let date = new
+                                        Date(order.createdAt).toLocaleString().split(',')
+                                        %>
+                                        <td><%= date[0] %></td>
+                                        <td><%= date[1] %></td>
+                                    </tr>
+                                    <% } %>
+                                    <!--  -->
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <%- include('../includes/endBody.ejs') %>
+    </body>
+</html>

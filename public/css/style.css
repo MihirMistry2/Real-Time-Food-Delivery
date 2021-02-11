@@ -1,0 +1,28 @@
+.navbar {
+    box-shadow: 0px 2px 15px rgb(0 0 0 / 10%);
+}
+
+.nav-item .active,
+.nav-item a:hover,
+.nav-item button:hover {
+    border-radius: 0;
+    border-bottom: solid 2px rgb(65, 231, 243);
+}
+
+.card {
+    border: 0;
+}
+
+.cartImg {
+    height: 80px;
+    width: 80px;
+}
+
+.card .card-img-top {
+    height: 180px;
+}
+
+#home .card:hover {
+    box-shadow: 1px 8px 20px grey;
+    -webkit-transition: box-shadow 0.3s ease-in;
+}

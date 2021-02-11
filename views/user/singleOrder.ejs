@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/head.ejs') %>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+        <section id="single-product">
+            <div class="container">
+                <div class="row py-4"></div>
+                <div class="row pt-4 mx-1">
+                    <h5 class="pt-2">Track Delivery Status</h5>
+                </div>
+                <div class="row">
+                    <input
+                        id="hiddenOrder"
+                        type="hidden"
+                        value="<%= JSON.stringify(order) %>"
+                    />
+                    <p class="bg-success mx-3 p-2 text-white rounded">
+                        <%= order._id %>
+                    </p>
+                    <div class="card w-100">
+                        <div class="card-body text-center">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        class="status_line"
+                                        data-status="order_placed"
+                                    >
+                                        <td>Order Placed</td>
+                                        <td
+                                            class="align-middle px-0"
+                                            rowspan="5"
+                                        >
+                                            <h2>
+                                                <%= new
+                                                Date(order.updatedAt).toLocaleString().split(',')[1]
+                                                %>
+                                            </h2>
+                                        </td>
+                                    </tr>
+                                    <tr
+                                        class="status_line"
+                                        data-status="confirmed"
+                                    >
+                                        <td>Order Confirm</td>
+                                    </tr>
+                                    <tr
+                                        class="status_line"
+                                        data-status="prepared"
+                                    >
+                                        <td>Preparation</td>
+                                    </tr>
+                                    <tr
+                                        class="status_line"
+                                        data-status="delivered"
+                                    >
+                                        <td>Out for Delivery</td>
+                                    </tr>
+                                    <tr
+                                        class="status_line"
+                                        data-status="completed"
+                                    >
+                                        <td>Delivery Successful</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <%- include('../includes/endBody.ejs') %>
+    </body>
+</html>
